@@ -1,7 +1,9 @@
 <?php
 $currentPage = basename($_SERVER['PHP_SELF']);
-$layananPages = ['jasa-tugas.php', 'jasa-laprak.php', 'servis-pc.php', 'it-consultant.php'];
+$layananPages = ['jasa-tugas.php', 'jasa-laprak.php', 'it-consultant.php', 'servis-laptop.php'];
 $isLayananActive = in_array($currentPage, $layananPages);
+$dataPages = ['account-setting.php', 'setting-notification.php'];
+$isDataActive = in_array($currentPage, $dataPages);
 ?>
 
 
@@ -32,7 +34,7 @@ $isLayananActive = in_array($currentPage, $layananPages);
         </li>
 
         <!-- Layouts -->
-        <li class="menu-item <?= $isLayananActive ? 'active' : '' ?>">
+        <li class="menu-item <?= $isLayananActive ? 'active open' : '' ?>">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div class="text-truncate" data-i18n="Layouts">Layanan</div>
@@ -67,25 +69,20 @@ $isLayananActive = in_array($currentPage, $layananPages);
             <span class="menu-header-text">DATA SECTION</span>
         </li>
         <!-- Pages -->
-        <li class="menu-item">
+        <li class="menu-item <?= $isDataActive ? 'active open' : '' ?>">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div class="text-truncate" data-i18n="User Account">User Account</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                <li class="menu-item <?= ($currentPage == 'account-setting.php') ? 'active' : '' ?>">
+                    <a href="account-setting.php" class="menu-link">
                         <div class="text-truncate" data-i18n="Account">Account</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                        <div class="text-truncate" data-i18n="Notifications">Notifications</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div class="text-truncate" data-i18n="Connections">Connections</div>
+                <li class="menu-item <?= ($currentPage == 'setting-notification.php') ? 'active' : '' ?>">
+                    <a href="setting-notification.php" class="menu-link">
+                        <div class="text-truncate" data-i18n="Notification">Notification</div>
                     </a>
                 </li>
             </ul>

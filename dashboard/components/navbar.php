@@ -1,3 +1,11 @@
+<?php
+$qUser = mysqli_query($conn, "SELECT nama, role, foto_profil FROM users WHERE id='$id'");
+$userNavbar = mysqli_fetch_assoc($qUser);
+
+$fotoNavbar = $userNavbar['foto_profil']
+    ? '../assets/img/avatars/' . $userNavbar['foto_profil']
+    : '../assets/img/avatars/default.png';
+?>
 <nav
     class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
     id="layout-navbar">
@@ -29,21 +37,31 @@
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img
+                            src="<?= $fotoNavbar ?>"
+                            alt="Foto Profil"
+                            class="w-px-40 h-auto rounded-circle"
+                            style="object-fit: cover;" />
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img
+                                            src="<?= $fotoNavbar ?>"
+                                            alt="Foto Profil"
+                                            class="w-px-40 h-auto rounded-circle"
+                                            style="object-fit: cover;" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h6 class="mb-0">John Doe</h6>
-                                    <small class="text-body-secondary">Admin</small>
+                                    <h6 class="mb-0"><?= htmlspecialchars($userNavbar['nama']) ?></h6>
+                                    <small class="text-body-secondary">
+                                        <?= ucfirst(htmlspecialchars($userNavbar['role'])) ?>
+                                    </small>
                                 </div>
                             </div>
                         </a>
@@ -52,28 +70,20 @@
                         <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="account-setting.php">
                             <i class="icon-base bx bx-user icon-md me-3"></i><span>My Profile</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="setting-notification.php">
                             <i class="icon-base bx bx-cog icon-md me-3"></i><span>Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <span class="d-flex align-items-center align-middle">
-                                <i class="flex-shrink-0 icon-base bx bx-credit-card icon-md me-3"></i><span class="flex-grow-1 align-middle">Billing Plan</span>
-                                <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
-                            </span>
                         </a>
                     </li>
                     <li>
                         <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="javascript:void(0);">
+                        <a class="dropdown-item" href="../../logout.php">
                             <i class="icon-base bx bx-power-off icon-md me-3"></i><span>Log Out</span>
                         </a>
                     </li>

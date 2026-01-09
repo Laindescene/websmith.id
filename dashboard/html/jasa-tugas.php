@@ -1,6 +1,7 @@
 <?php
 require '../config/config.php';
 require '../config/midtrans.php';
+$id = $_SESSION['user_id'];
 $snapToken = null;
 $pay_id = null;
 
